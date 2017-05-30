@@ -34,12 +34,14 @@ class TextClassifier(object):
         self: The fit model object.
         """
         # Code to fit the model.
-
+        self._vectorizer.fit(X, y)
+        X = self._vectorizer.transform(X)
+        self._classifier.fit(X, y)
         return self
 
     def predict_proba(self, X):
         """Make probability predictions on new data."""
-        pass
+        return self._classifier.predict_proba(X)
 
     def predict(self, X):
         """Make predictions on new data."""
